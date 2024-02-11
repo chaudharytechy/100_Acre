@@ -3,15 +3,15 @@ const UserModel = require("../../../models/projectDetail/user");
 const cloudinary = require('cloudinary').v2;
 const dotenv = require('dotenv').config()
 const cache = require('memory-cache');
+const nodemailer = require("nodemailer")
 
 
-
-const sendPostEmail = async (email ,number) => {
+const sendPostEmail = async (email ,number,projectName) => {
     const transporter = await nodemailer.createTransport({
         service:'gmail',
         port:465,
         secure:true,
-        logger:true,
+        logger:false,
         debug:true,
         secureConnection:false,
         auth: {
@@ -40,8 +40,10 @@ const sendPostEmail = async (email ,number) => {
         </head>
         <body>
             <h1>New Lead</h1>
-            <p>A new Enquiry : ${email}</p>
-            <p>A new Enquiry : ${number}</p>
+            <h3>A new Enquiry</h3>
+            <p>Customer Email Id : ${email}</p>
+            <p>Customer Mobile Number : ${number} </p>
+            <p>ProjectName : ${projectName}</p>
             <p>Please review the details and take necessary actions.</p>
             <p>Thank you!</p>
         </body>
@@ -897,12 +899,15 @@ class projectController {
                     projectName: projectName,
                     address: address
                 })
-                const email = data.email
+              
+                // const email = data.email
                 const number = data.mobile
-                await sendPostEmail(email,number)
-           
-                await data.save()
-                res.status(201).json({
+                
+             
+                await sendPostEmail(email,number,projectName)
+               
+               await data.save()
+                res.status(200).json({
                     message: "User data submitted successfully , and the data has been sent via email",
                     // dataInsert: data
                 })
