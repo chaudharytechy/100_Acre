@@ -45,17 +45,9 @@ class otherpropertyController {
       }
 
       const data = new otherPropertyModel({
-        // propertyOwnerEmail: propertyOwnerEmail,
-        // propertyOwnerNumber: propertyOwnerNumber,
-        // propertyType: propertyType,
-        // propertyName: propertyName,
-        // address: address,
-        // city: city,
-        // state: state,
-        // price: price,
-        // area: area,
-        propertyOwnerEmail:propertyOwnerEmail,
-        propertyOwnerNumber:propertyOwnerNumber,
+        propertyOwnerEmail: propertyOwnerEmail,
+        propertyName: propertyName,
+        properyOwnerNumber: propertyOwnerNumber,
         descripation: descripation,
         landMark: landMark,
         amenities: amenities,
@@ -77,7 +69,7 @@ class otherpropertyController {
       await data.save()
 
       res.status(200).json({
-        message: "data submit successfully ! "
+        message: "data submit successfully !"
       })
     } catch (error) {
       console.log(error)

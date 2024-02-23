@@ -128,7 +128,7 @@ class PostPropertyController {
     // seller work Registration 
     static postPerson_Register = async (req, res) => {
         try {
-            const { name, email, mobile, password, cpassword } = req.body
+            const { name, email, mobile, password, cpassword ,role} = req.body
             // console.log(req.body
             const verify = await postPropertyModel.findOne({ email: email })
             if (verify) {
@@ -137,7 +137,7 @@ class PostPropertyController {
                 })
             }
             else {
-                if (name && email && password && cpassword && mobile) {
+                if (name && email && password && cpassword && mobile&&role) {
                     if (password.length < 5) {
                         res.status(400).json({
                             message: " Password must be atleast 8 character ! "
@@ -150,6 +150,7 @@ class PostPropertyController {
                                 email: email,
                                 password: hashpassword,
                                 mobile: mobile,
+                                role:role
                             })
                             // console.log(data)
                             await data.save()
@@ -301,6 +302,7 @@ class PostPropertyController {
         try {
 
             const { token } = req.params
+            console.log(token)
             const { password } = req.body
             if (token && password) {
                 const hashpassword = await bcrypt.hash(password, 10)
@@ -536,7 +538,8 @@ class PostPropertyController {
                     const personData = await postPropertyModel.findById({ _id: id })
                     const email = personData.email;
                     const number = personData.mobile;
-
+                    const agentName=personData.name;
+                    const role=personData.role;
 
                     const data = {
                         propertyType: req.body.propertyType,
@@ -556,6 +559,8 @@ class PostPropertyController {
                         email: email,
                         number: number,
                         verify: " ",
+                        agentName:agentName,
+                        role:role,
                         frontImage: {
                             public_id: frontResult.public_id,
                             url: frontResult.secure_url
@@ -1311,7 +1316,7 @@ class PostPropertyController {
                     propertyAddress: propertyAddress,
                 })
                 // console.log(data)
-                if (agentEmail) {
+                if (!agentEmail) {
                     const transporter = await nodemailer.createTransport({
                         service: 'gmail',
                         port: 465,
@@ -1412,10 +1417,12 @@ class PostPropertyController {
                 })
             }
         } catch (error) {
-
+         console.log(error)
+         res.status(500).json({
+           message:"internal server error ! "
+         })
         }
     }
-
 
 
 }

@@ -254,7 +254,7 @@ class homeController {
 
   // filter data by projectname, city,buildername,minPrice,maxprice
   // type===residential and Commercial 
-  //area or state 
+  //
   // furnishing === select box fully or semi furnished 
 
   static filter_data = async (req, res) => {

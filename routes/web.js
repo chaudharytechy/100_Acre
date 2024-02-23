@@ -47,6 +47,8 @@ router.delete('/project/Delete/:id', projectController.projectDelete)
 
 router.get('/project/trending',projectController.project_trending)
 router.get('/project/featured',projectController.project_featured)
+router.get('/project/upcoming',projectController.project_Upcoming)
+router.get('/project/city',projectController.project_City)
 
    //from
 router.post('/userInsert', projectController.userInsert)
@@ -60,6 +62,9 @@ router.get('/bhk_view/:id',projectController.bhk_view)
 router.get('/bhk_edit/:id',projectController.bhk_edit)
 router.post('/bhk_update/:id',projectController.bhk_update)
 router.delete('/bhk_delete/:id',projectController.bhk_delete)
+  ///project highlight
+  router.post('/highlight/:id',projectController.highlightPoint)
+  router.get("/highlight/view/:id",projectController.highlightPoint_view)
 
 //contact
 // Customer Contact routing handler
