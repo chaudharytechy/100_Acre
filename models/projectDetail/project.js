@@ -131,7 +131,14 @@ const projectSchema = new mongoose.Schema({
             type: String,
         },
     },
- 
+    projectMaster_Image:{
+        public_id: {
+            type: String,
+        },
+        url: {
+            type: String,
+        },
+    },
     BhK_Details: [bhk_Schema],
     highlight: [highlight_Schema],
 },

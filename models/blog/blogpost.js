@@ -14,7 +14,25 @@ const postSchema = new mongoose.Schema({
     },
     descripation: {
         type: String,
-    }
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    tags: [String],
+    image: String,
 });
 
 const blogSchema = new mongoose.Schema({

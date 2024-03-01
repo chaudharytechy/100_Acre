@@ -359,6 +359,33 @@ class homeController {
   // ///////////////////
 
 
+  // Count total number of data according to city 
+  static dataCity = async (req, res) => {
+    try {
+        const cityCounts = await ProjectModel.aggregate([
+            {
+                $group: {
+                    _id: '$builderName', // Group by the builderName field
+                    count: { $sum: 1 }, // Count documents for each builderName
+                    documents: { $push: '$$ROOT' } // Push all fields of documents into an array $$ROOT refers to the root document, so it includes all fields of the document.
+                }
+            }
+        ]);
+
+        res.status(200).json({
+            cityCounts: cityCounts
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Error occurred while counting documents"
+        });
+    }
+}
+
+
+
+
 }
 module.exports = homeController
 

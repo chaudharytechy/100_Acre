@@ -45,9 +45,9 @@ class otherpropertyController {
       }
 
       const data = new otherPropertyModel({
-        propertyOwnerEmail: propertyOwnerEmail,
+       propertyOwnerEmail:propertyOwnerEmail,
         propertyName: propertyName,
-        properyOwnerNumber: propertyOwnerNumber,
+       propertyOwnerNumber:propertyOwnerNumber,
         descripation: descripation,
         landMark: landMark,
         amenities: amenities,
@@ -74,7 +74,7 @@ class otherpropertyController {
     } catch (error) {
       console.log(error)
       res.send(500).json({
-        message: "Internal server error ! "
+        message: "internal server error ! "
       })
     }
   }
@@ -91,7 +91,7 @@ class otherpropertyController {
     } catch (error) {
       console.log(error)
       res.status(500).json({
-        message: "internal server error !"
+        message: " Internal server error !"
       })
     }
   }
@@ -393,8 +393,7 @@ class otherpropertyController {
           cust_Name: cust_Name,
           propertyName: propertyName,
           Prop_address: address,
-          status: status
-
+          status: status,
         })
         // Connect with SMTP Gmail
         const transporter = await nodemailer.createTransport({

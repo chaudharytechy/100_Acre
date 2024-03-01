@@ -44,7 +44,7 @@ class projectController {
             // console.log(req.files)
             if(projectOverview){
             if (req.files) {
-                if (req.files.logo && req.files.frontImage && req.files.project_locationImage && req.files.project_floorplan_Image&&req.files.highlightImage&&req.files.project_Brochure&&req.files.projectGallery) {
+                if (req.files.logo && req.files.frontImage && req.files.project_locationImage && req.files.project_floorplan_Image&&req.files.highlightImage&&req.files.project_Brochure&&req.files.projectGallery&&req.files.projectMaster_Image) {
                     const logo = req.files.logo
                     const logoResult = await cloudinary.uploader.upload(
                         logo.tempFilePath, {
@@ -61,8 +61,7 @@ class projectController {
                     const projectLocationResult = await cloudinary.uploader.upload(
                         project_locationImage.tempFilePath, {
                         folder:"100acre/project"
-                    }
-                    )
+                    })
                     const project_floorplan = req.files.project_floorplan_Image;
                     // console.log(req.files.project_floorplan_Image)
                     const floorplanLink = []
@@ -130,6 +129,14 @@ class projectController {
                             url:projectGalleryImageResult.secure_url
                         })
                      }
+                   
+                     const projectMaster_plan = req.files.projectMaster_plan;
+                     const projectMaster_planResult = await cloudinary.uploader.upload(
+                       projectMaster_plan.tempFilePath,
+                       {
+                         folder: "100acre/project",
+                       }
+                     );
                     const data = new ProjectModel({
                         logo: {
                             public_id: logoResult.public_id,
@@ -144,7 +151,10 @@ class projectController {
                             url: projectLocationResult.secure_url
                         },
                         project_floorplan_Image: floorplanLink,
-
+                        projectMaster_plan:{
+                            public_id:projectMaster_planResult.public_id,
+                            url:projectMaster_planResult.secure_url
+                        },
                         project_Brochure:{
                         public_id:project_BrochureResult.public_id,
                         url:project_BrochureResult.secure_url
@@ -263,7 +273,13 @@ class projectController {
                             url:projectGalleryImageResult.secure_url
                         })
                      }
-
+                     const projectMaster_plan = req.files.projectMaster_plan;
+                     const projectMaster_planResult = await cloudinary.uploader.upload(
+                       projectMaster_plan.tempFilePath,
+                       {
+                         folder: "100acre/project",
+                       }
+                     );
                     const data = new ProjectModel({
                         logo: {
                             public_id: logoResult.public_id,
@@ -278,7 +294,10 @@ class projectController {
                             url: projectLocationResult.secure_url
                         },
                         project_floorplan_Image: floorplanLink,
-                      
+                        projectMaster_plan:{
+                            public_id:projectMaster_planResult.public_id,
+                            url:projectMaster_planResult.secure_url
+                        },
                         highlightImage:{
                         public_id:highlightImageResult.public_id,
                         url:highlightImageResult.secure_url
@@ -397,7 +416,7 @@ class projectController {
             const id = req.params.id;
             if (req.files) {
                 // console.log("hellofile")
-                if (req.files.logo && req.files.frontImage && req.files.project_locationImage && req.files.project_floorplan_Image&&req.files.highlightImage&&req.files.project_Brochure&&req.files.projectGallery) {
+                if (req.files.logo && req.files.frontImage && req.files.project_locationImage && req.files.project_floorplan_Image&&req.files.highlightImage&&req.files.project_Brochure&&req.files.projectGallery&&req.files.projectMaster_Image) {
                     // console.log("hello")
                     const logo = req.files.logo;
                     // console.log("hello")
@@ -771,7 +790,10 @@ class projectController {
                        } 
                     )
                     const data = await ProjectModel.findByIdAndUpdate({ _id: id }, {
-                        highlightImage:highlightImageResult,
+                        highlightImage:{
+                            public_id:highlightImageResult.public_id,
+                            url:highlightImageResult.secure_url
+                        },
                         projectName: projectName,
                         state: state,
                         projectAddress: projectAddress,
@@ -796,12 +818,15 @@ class projectController {
                         message: "data updated successfully ! "
                     }) 
                 }else if(req.files.project_Brochure){
+
                     const project_Brochure=req.files.project_Brochure;
-                    const project_BrochureResult=await cloudinary.uploader.upload(
-                        project_Brochure.tempFilePath,{
-                        folder:"100acre/project"
-                       } 
-                    )
+
+                    const project_BrochureResult = await cloudinary.uploader.upload(project_Brochure.tempFilePath, {
+                        folder: "100acre/project",
+                        resource_type: "raw" // or "raw"
+                      });
+    
+                      console.log(project_BrochureResult);
                     const data = await ProjectModel.findByIdAndUpdate({ _id: id }, {
                         project_Brochure:project_BrochureResult,
                         projectName: projectName,
@@ -827,6 +852,42 @@ class projectController {
                     res.status(200).json({
                         message: "data updated successfully ! "
                     })  
+                }else if(req.files.projectMaster_Image){
+                    const projectMaster_plan = req.files.projectMaster_plan;
+                    const projectMaster_planResult = await cloudinary.uploader.upload(
+                      projectMaster_plan.tempFilePath,
+                      {
+                        folder: "100acre/project",
+                      }
+                    );
+                    const data = await ProjectModel.findByIdAndUpdate({ _id: id }, {
+                        projectMaster_plan:{
+                            public_id:projectMaster_planResult.public_id,
+                            url:projectMaster_planResult.secure_url
+                        },
+                        projectName: projectName,
+                        state: state,
+                        projectAddress: projectAddress,
+                        project_discripation: project_discripation,
+                        projectRedefine_Business: projectRedefine_Business,
+                        projectRedefine_Connectivity: projectRedefine_Connectivity,
+                        projectRedefine_Entertainment: projectRedefine_Entertainment,
+                        projectRedefine_Education: projectRedefine_Education,
+                        Amenities: Amenities,
+                        projectBgContent: projectBgContent,
+                        projectReraNo: projectReraNo,
+                        meta_description: meta_description,
+                        meta_title: meta_title,
+                        city: city,
+                        type: type,
+                        projectOverview: projectOverview,
+                        project_url:project_url,
+                        project_Status:project_Status
+                    })
+                    await data.save()
+                    res.status(200).json({
+                        message: "data updated successfully ! "
+                    })
                 }
             } else {
                 const data = await ProjectModel.findByIdAndUpdate({ _id: id }, {
