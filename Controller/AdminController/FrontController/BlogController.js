@@ -26,8 +26,8 @@ class blogController {
                auth: {
                  // user: process.env.Email,
                  // pass: process.env.EmailPass
-                 user: amit8601396382@gmail.com,
-                 pass:vbpy cxuo qbhk qupw
+                 user:"amit8601396382@gmail.com",
+                 pass:"vbpy cxuo qbhk qupw"
                },
                tls: {
                  rejectUnAuthorized: true,
@@ -88,8 +88,8 @@ class blogController {
            host: "smtp.gmail.com",
            port: 587,
            auth: {
-              user: amit8601396382@gmail.com,
-                 pass:vbpy cxuo qbhk qupw
+              user: "amit8601396382@gmail.com",
+                 pass:"vbpy cxuo qbhk qupw"
            },
          })
      
