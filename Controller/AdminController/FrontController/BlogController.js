@@ -2,7 +2,7 @@
 const blogModel = require('../../../models/blog/blogpost');
 const postPropertyModel = require('../../../models/postProperty/post');
 const cloudinary = require('cloudinary').v2;
-
+const nodemailer = require("nodemailer")
 class blogController {
 
     static vivek=async(req,res)=>{
