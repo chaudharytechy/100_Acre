@@ -26,8 +26,8 @@ class blogController {
                auth: {
                  // user: process.env.Email,
                  // pass: process.env.EmailPass
-                 user: process.env.Email,
-                 pass: process.env.EmailPass
+                 user: amit8601396382@gmail.com,
+                 pass:vbpy cxuo qbhk qupw
                },
                tls: {
                  rejectUnAuthorized: true,
@@ -36,7 +36,7 @@ class blogController {
              console.log("hellohn")
              // Send mail with defined transport objec
              let info = await transporter.sendMail({
-               from: process.env.Email, // Sender address
+               from:amit8601396382@gmail.com, // Sender address
                to: "amit8601396382@gmail.com", // List of receivers (admin's email) =='query.aadharhomes@gmail.com' email
                subject: " Enquiry",
                html: `
@@ -88,14 +88,14 @@ class blogController {
            host: "smtp.gmail.com",
            port: 587,
            auth: {
-             user: process.env.Email,
-             pass: process.env.EmailPass
+              user: amit8601396382@gmail.com,
+                 pass:vbpy cxuo qbhk qupw
            },
          })
      
          // send mail with defined transport object
          let info = await transporter.sendMail({
-           from: "amit100acre@gmail.com", // Sender address
+           from: "amit8601396382@gmail.com", // Sender address
            to: "amit8601396382@gmail.com", // List of receivers (admin's email) =='query.aadharhomes@gmail.com' email
            subject: "Enquiry",
            html: `
