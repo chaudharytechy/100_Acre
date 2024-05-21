@@ -6,7 +6,7 @@ const nodemailer = require("nodemailer")
 const cloudinary = require('cloudinary').v2;
 const cache = require('memory-cache');
 const postEnquiryModel = require("../../../models/postProperty/enquiry");
-const { data } = require("jquery");
+
 
 // Function to get all project data and cache it
 const getAllProjects = async () => {
