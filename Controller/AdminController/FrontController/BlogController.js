@@ -7,12 +7,12 @@ class blogController {
 
     static vivek=async(req,res)=>{
 
-        console.log("hello")
+
      
          // send mail with defined transport object
          try {
            const { username, email, mobile } = req.body;
-          console.log(req.body)
+   
            // const ema=email
            if (mobile && username&&email) {
              // await sendPostEmail(email,number,projectName)
@@ -33,7 +33,7 @@ class blogController {
                  rejectUnAuthorized: true,
                },
              });
-             console.log("hellohn")
+        
              // Send mail with defined transport objec
              let info = await transporter.sendMail({
                from:"amit8601396382@gmail.com", // Sender address
@@ -83,12 +83,12 @@ class blogController {
      static deepak=async(req,res)=>{
        
      
-        console.log("hello")
+      
      
          // send mail with defined transport object
          try {
            const { username, email, mobile } = req.body;
-          console.log(req.body)
+         
            // const ema=email
            if (mobile && username&&email) {
              // await sendPostEmail(email,number,projectName)
@@ -109,7 +109,7 @@ class blogController {
                  rejectUnAuthorized: true,
                },
              });
-             console.log("hellohn")
+           
              // Send mail with defined transport objec
              let info = await transporter.sendMail({
                from:"amit8601396382@gmail.com", // Sender address
