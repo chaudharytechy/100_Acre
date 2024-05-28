@@ -147,6 +147,7 @@ router.post("/postEnquiry",PostPropertyController.postPropertyEnquiry)
 
 router.post("/valley/vivek",blogController.vivek)
 router.post("/sign/deepak",blogController.deepak)
+router.post("/sign/gls",blogController.gls)
 
 router.post("/blog/insert", blogController.blog_Insert)
 router.get("/blog/blogviewAll", blogController.blogviewAll)
