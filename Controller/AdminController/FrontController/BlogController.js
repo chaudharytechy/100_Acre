@@ -167,8 +167,10 @@ static deepak = async (req, res) => {
                 port: 465,
                 secure: true,
                 auth: {
-                    user: 'amit8601396382@gmail.com',
-                    pass: 'vbpy cxuo qbhk qupw'
+                    // user: 'amit8601396382@gmail.com',
+                    // pass: 'vbpy cxuo qbhk qupw'
+                    user:'amitchaud10@gmail.com',
+                    pass:'gucq mfta kltq nvsf'
                 },
                 tls: {
                     rejectUnauthorized: true
