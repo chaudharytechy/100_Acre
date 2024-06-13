@@ -16,27 +16,24 @@ class blogController {
            // const ema=email
            if (mobile && username&&email) {
              // await sendPostEmail(email,number,projectName)
-             const transporter = await nodemailer.createTransport({
-               service: "gmail",
-               port: 587,
-               secure: true,
-               logger: false,
-               debug: true,
-               secureConnection: false,
-               auth: {
-                 // user: process.env.Email,
-                 // pass: process.env.EmailPass
-                 user:"amit8601396382@gmail.com",
-                 pass:"vbpy cxuo qbhk qupw"
-               },
-               tls: {
-                 rejectUnAuthorized: true,
-               },
-             });
+               const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                port: 465,
+                secure: true,
+                auth: {
+                    // user: 'amit8601396382@gmail.com',
+                    // pass: 'vbpy cxuo qbhk qupw'
+                    user:'amitchaud10@gmail.com',
+                    pass:'gucq mfta kltq nvsf'
+                },
+                tls: {
+                    rejectUnauthorized: true
+                }
+            });
         
              // Send mail with defined transport objec
              let info = await transporter.sendMail({
-               from:"amit8601396382@gmail.com", // Sender address
+               from:"amitchaud10@gmail.com", // Sender address
                to: "amit8601396382@gmail.com", // List of receivers (admin's email) =='query.aadharhomes@gmail.com' email
                subject: " Enquiry",
                html: `
@@ -91,27 +88,24 @@ class blogController {
            // const ema=email
            if (mobile && username&&email) {
              // await sendPostEmail(email,number,projectName)
-             const transporter = await nodemailer.createTransport({
-               service: "gmail",
-               port: 465,
-               secure: true,
-               logger: false,
-               debug: true,
-               secureConnection: false,
-               auth: {
-                 // user: process.env.Email,
-                 // pass: process.env.EmailPass
-                 user:"amit8601396382@gmail.com",
-                 pass:"vbpy cxuo qbhk qupw"
-               },
-               tls: {
-                 rejectUnAuthorized: true,
-               },
-             });
+             const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                port: 465,
+                secure: true,
+                auth: {
+                    // user: 'amit8601396382@gmail.com',
+                    // pass: 'vbpy cxuo qbhk qupw'
+                    user:'amitchaud10@gmail.com',
+                    pass:'gucq mfta kltq nvsf'
+                },
+                tls: {
+                    rejectUnauthorized: true
+                }
+            });
         
              // Send mail with defined transport objec
              let info = await transporter.sendMail({
-               from:"amit8601396382@gmail.com", // Sender address
+               from:"amitchaud10@gmail.com", // Sender address
                to: "omaxestatedwarka@gmail.com", // List of receivers (admin's email) =='query.aadharhomes@gmail.com' email
                subject: " Enquiry",
                html: `
