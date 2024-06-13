@@ -18,7 +18,7 @@ class blogController {
              // await sendPostEmail(email,number,projectName)
              const transporter = await nodemailer.createTransport({
                service: "gmail",
-               port: 465,
+               port: 587,
                secure: true,
                logger: false,
                debug: true,
