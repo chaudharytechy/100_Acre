@@ -52,7 +52,7 @@ router.get('/project/city',projectController.project_City)
 
    //from
 router.post('/userInsert', projectController.userInsert)
-router.get("/userViewAll",projectController.userViewAll)
+router.get("/userView",projectController.userViewAll)
 router.get("/userviewDetail/:id",projectController.userViewDetail)
 router.post("/userUpdate/:id",projectController.userUpdate)
 router.delete("/userdataDelete/delete/:id", projectController.userdataDelete)
