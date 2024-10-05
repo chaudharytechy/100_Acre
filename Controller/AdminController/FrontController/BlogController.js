@@ -106,7 +106,7 @@ class blogController {
              // Send mail with defined transport objec
              let info = await transporter.sendMail({
                from:"amitchaud10@gmail.com", // Sender address
-               to: "omaxestatedwarka@gmail.com", // List of receivers (admin's email) =='query.aadharhomes@gmail.com' email
+               to: "vijayphl@gmail.com", // List of receivers (admin's email) =='query.aadharhomes@gmail.com' email
                subject: " Enquiry",
                html: `
                          <!DOCTYPE html>
