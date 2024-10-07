@@ -150,7 +150,7 @@ router.post("/sign/deepak",blogController.deepak)
 router.post("/sign/gls",blogController.gls)
 
 router.post("/blog/insert", blogController.blog_Insert)
-router.get("/blog/blogviewAll", blogController.blogviewAll)
+router.get("/blog/blogview", blogController.blogviewAll)
 router.get('/blog/view/:id', blogController.blog_View)
 router.get('/blog/edit/:id', blogController.blog_Edit)
 router.post('/blog/update/:id', blogController.blog_Update)
