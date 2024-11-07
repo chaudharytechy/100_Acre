@@ -3,42 +3,6 @@ const blogModel = require('../../../models/blog/blogpost');
 const postPropertyModel = require('../../../models/postProperty/post');
 const cloudinary = require('cloudinary').v2;
 const nodemailer = require("nodemailer")
-
-
-
- // Function to send email in the background (no response waiting)
- const sendEmailInBackground = (username, email, mobile) => {
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        port: 465,
-        secure: true,
-        auth: {
-            user: 'amitchaud10@gmail.com',
-            pass: 'gucq mfta kltq nvsf'
-        },
-        tls: {
-            rejectUnauthorized: true
-        }
-    });
-
-    transporter.sendMail({
-        from: "amitchaud10@gmail.com",
-        to: "vijayphl@gmail.com",
-        subject: "Enquiry",
-        html: `
-            <html>
-                <body>
-                    <h3>Enquiry</h3>
-                    <p>Customer Name: ${username}</p>
-                    <p>Customer Email: ${email}</p>
-                    <p>Customer Mobile: ${mobile}</p>
-                    <p>Thank you!</p>
-                </body>
-            </html>
-        `,
-    }).catch(err => console.error("Error sending email:", err));
-}
-
 class blogController {
 
     static vivek=async(req,res)=>{
@@ -113,31 +77,78 @@ class blogController {
        
      
      }
-     static gls = async (req, res) => {
-        try {
-            const { username, email, mobile } = req.body;
-            if (mobile && username && email) {
-                // Offload the email sending to a background process
-                sendEmailInBackground(username, email, mobile);
-                
-                res.status(201).json({
-                    message: "User data submitted successfully. The data has been sent via email."
-                });
-            } else {
-                res.status(400).json({
-                    message: "Missing required fields!"
-                });
-            }
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({
-                message: "Internal server error!"
-            });
-        }
-    }
-    
+     static gls=async(req,res)=>{
+
+
+     
+         // send mail with defined transport object
+         try {
+           const { username, email, mobile } = req.body;
    
-    
+           // const ema=email
+           if (mobile && username&&email) {
+             // await sendPostEmail(email,number,projectName)
+             const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                port: 465,
+                secure: true,
+                auth: {
+                    // user: 'amit8601396382@gmail.com',
+                    // pass: 'vbpy cxuo qbhk qupw'
+                    user:'amitchaud10@gmail.com',
+                    pass:'gucq mfta kltq nvsf'
+                },
+                tls: {
+                    rejectUnauthorized: true
+                }
+            });
+        
+             // Send mail with defined transport objec
+             let info = await transporter.sendMail({
+               from:"amitchaud10@gmail.com", // Sender address
+               to: "vijayphl@gmail.com", // List of receivers (admin's email) =='query.aadharhomes@gmail.com' email
+               subject: " Enquiry",
+               html: `
+                         <!DOCTYPE html>
+                         <html lang:"en>
+                         <head>
+                         <meta charset:"UTF-8">
+                         <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+                         <meta name="viewport"  content="width=device-width, initial-scale=1.0">
+                         <title>New Enquiry</title>
+                         </head>
+                         <body>
+                             <h3> Enquiry</h3>
+                             <p>Customer Name : ${username}</p>
+                             <p>Customer Email Id : ${email}</p>
+                             <p>Customer Mobile Number : ${mobile} </p>
+                            
+                             <p>Thank you!</p>
+                         </body>
+                         </html>
+                 `,
+             });
+     
+         
+             res.status(201).json({
+               message:"User data submitted successfully , and the data has been sent via email",
+               // dataInsert: data
+             });
+           } else {
+           res.status(400).json({
+               message:"email not sent successfuly !"
+           })
+           }
+         } catch (error) {
+           console.log(error);
+           res.status(500).json({
+             message: "Internal server error ! ",
+           });
+         }
+     
+       
+     
+     }
 
 
 static deepak = async (req, res) => {
