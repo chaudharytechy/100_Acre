@@ -215,7 +215,7 @@ static deepak = async (req, res) => {
 
     
 
-    //Blog insert api for data
+    //Blog insert api for data ddhjcc
     static blog_Insert = async (req, res) => {
        //console.log("hello")
         try {
