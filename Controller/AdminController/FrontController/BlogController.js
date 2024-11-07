@@ -15,6 +15,10 @@ class blogController {
    
            // const ema=email
            if (mobile && username&&email) {
+                 res.status(201).json({
+               message:"User data submitted successfully , and the data has been sent via email",
+               // dataInsert: data
+             });
              // await sendPostEmail(email,number,projectName)
                const transporter = nodemailer.createTransport({
                 service: 'gmail',
@@ -58,10 +62,10 @@ class blogController {
              });
      
          
-             res.status(201).json({
-               message:"User data submitted successfully , and the data has been sent via email",
-               // dataInsert: data
-             });
+             // res.status(201).json({
+             //   message:"User data submitted successfully , and the data has been sent via email",
+             //   // dataInsert: data
+             // });
            } else {
            res.status(400).json({
                message:"email not sent successfuly !"
